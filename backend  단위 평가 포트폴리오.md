@@ -1,132 +1,150 @@
-## ✅ 백엔드 포트폴리오 단위 평가
 
-### �� 주제: **사용자 인증 및 게시글 API 구현**
 
-### �� 개요
 
-간단한 커뮤니티 시스템을 개발합니다. 사용자 회원가입 및 로그인, 인증 기반의 게시글 CRUD API를 구현하세요.
 
+HMSpring 검색
+
+H
+
+홈
+1
+
+DM
+2
+
+내 활동
+3
+
+캔버스
+4
+
+더 보기
+0
+
+HMSpring
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+파일 세부정보
+
+java 단위 평가 포트폴리오.md
+서성원
+어제, 오전 9:35
+
+# ✅ Java 포트폴리오 단위평가
+​
 ---
-
-## �� 요구 기능
-
-### 1. **회원(User) 기능**
-
-* 사용자 회원가입
-* 로그인 (JWT 발급)
-* 사용자 정보 조회 (인증 필요)
-
-### 2. **게시글(Post) 기능**
-
-* 게시글 목록 조회 (페이징)
-* 게시글 단건 조회
-* 게시글 작성 (로그인 필요)
-* 게시글 수정/삭제 (작성자 본인만 가능)
-
+​
+다음은 **Java 포트폴리오 단위평가 문제**입니다. 요구사항에 따라 다음 기술이 반드시 사용되어야 합니다:
+​
+* **람다식 (Lambda Expression)**
+* **제네릭 (Generic)**
+* **컬렉션 프레임워크 (Collection API)**
+​
 ---
-
-## �� 기술 요구사항
-
-| 영역          | 내용                                                 |
-| ----------- | -------------------------------------------------- |
-| Spring Boot | 3.x 이상 권장                                          |
-| ORM         | Spring Data JPA + H2 또는 MySQL 사용                   |
-| 인증/보안       | Spring Security + JWT 기반 인증                        |
-| REST API    | RESTful 원칙에 따라 URL/Method 설계                       |
-| 예외 처리       | GlobalExceptionHandler 사용하여 응답 통일화                 |
-| 유효성 검사      | `@Valid`와 `@Validated` 사용                          |
-| 테스트 (선택)    | Postman collection 또는 간단한 Controller Test 포함 시 가산점 |
-
+​
+## ✅ 문제: **고객 주문 통계 분석기**
+​
+당신은 한 전자상거래 회사의 백엔드 개발자입니다. 고객들의 주문 데이터를 분석하여 특정 통계를 반환하는 유틸리티 클래스를 구현해야 합니다.
+​
+### �� 요구 사항
+​
+다음 클래스를 정의하고 요구 기능을 구현하시오:
+​
 ---
-
-## �� 상세 테이블 설계
-
-### �� User
-
-| 필드명      | 타입          | 설명             |
-| -------- | ----------- | -------------- |
-| id       | Long (PK)   | 사용자 고유 ID      |
-| username | String      | 로그인 ID (중복X)   |
-| password | String      | 비밀번호 (암호화)     |
-| nickname | String      | 사용자 닉네임        |
-| role     | Enum/String | 권한 (e.g. USER) |
-
----
-
-### �� Post
-
-| 필드명       | 타입            | 설명        |
-| --------- | ------------- | --------- |
-| id        | Long (PK)     | 게시글 고유 ID |
-| title     | String        | 게시글 제목    |
-| content   | String        | 게시글 내용    |
-| author    | User (FK)     | 작성자 참조    |
-| createdAt | LocalDateTime | 작성일시      |
-
----
-
-## �� 구현 예시
-
-### �� 인증 API
-
-```
-POST /api/auth/signup      → 회원가입
-POST /api/auth/login       → 로그인 후 JWT 반환
-GET  /api/users/me         → 현재 로그인한 사용자 정보
-```
-
-### �� 게시글 API
-
-```
-GET    /api/posts               → 게시글 목록 (페이징)
-GET    /api/posts/{id}          → 게시글 상세 조회
-POST   /api/posts               → 게시글 작성 (인증 필요)
-PUT    /api/posts/{id}          → 게시글 수정 (본인만)
-DELETE /api/posts/{id}          → 게시글 삭제 (본인만)
-```
-
----
-
-## ✅ JWT 요구 조건
-
-* 로그인 성공 시 JWT 발급 (AccessToken)
-* Authorization 헤더: `Bearer <token>` 방식 사용
-* JWT를 통해 사용자 인증 및 권한 검사
-
----
-
-## ⚠️ 주의 사항
-
-* 비밀번호는 **암호화(BCrypt)** 해서 저장해야 합니다.
-* 게시글 수정/삭제는 **작성자만 가능**해야 합니다.
-* JPA Lazy 로딩 시 예외 방지를 위한 DTO 사용 권장
-* API 응답은 통일된 JSON 형식으로 작성
-
-```json
-{
-  "status": "OK",
-  "message": "성공적으로 처리되었습니다.",
-  "data": { ... }
+​
+### 1. 클래스 정의
+​
+#### `Order`
+​
+```java
+public class Order {
+    private String customerName;
+    private String product;
+    private int quantity;
+    private double unitPrice;
+​
+    // 생성자, getter, toString 오버라이딩 구현
 }
 ```
-
+​
 ---
-
-## �� 제출 방식
-
-* 압축 파일 제출
-* 디렉토리 구조는 다음과 같이 구성해주세요:
-
+​
+### 2. 제네릭 유틸리티 클래스 정의
+​
+#### `OrderProcessor<T extends Order>`
+​
+* 제네릭 타입을 활용해 `Order` 또는 그 하위 타입 처리 가능하도록 구성
+* 주요 기능:
+​
+```java
+public class OrderProcessor<T extends Order> {
+​
+    private List<T> orders;
+​
+    public OrderProcessor(List<T> orders) {
+        this.orders = orders;
+    }
+​
+    // 총 주문 수량 계산
+    public int totalQuantity();
+​
+    // 총 매출액 계산 (quantity * unitPrice)
+    public double totalRevenue();
+​
+    // 고객별 총 주문액 Map<String, Double> 반환
+    public Map<String, Double> revenuePerCustomer();
+​
+    // 단가 기준 정렬된 주문 리스트 반환 (람다 사용)
+    public List<T> sortByUnitPriceDesc();
+}
 ```
-src/
- └─ main/
-     ├─ java/com/example/demo/
-     │    ├─ controller
-     │    ├─ domain
-     │    ├─ dto
-     │    ├─ repository
-     │    ├─ security
-     │    ├─ service
-     │    └─ config
-     └─ resources/
-         └─ application.yml
+​
+---
+​
+### ✨ 구현 조건
+​
+* `List`, `Map`, `Collectors` 등의 Java 컬렉션 사용
+* `for` 루프 대신 **Stream API + 람다식**을 최대한 활용
+* `OrderProcessor`는 제네릭으로 구현
+* 정렬은 람다를 이용하여 `Comparator`로 구현
+​
+---
+​
+## �� 예시
+​
+```java
+List<Order> orders = List.of(
+    new Order("Alice", "Laptop", 2, 1200.0),
+    new Order("Bob", "Mouse", 5, 25.0),
+    new Order("Alice", "Keyboard", 1, 75.0),
+    new Order("Charlie", "Monitor", 2, 300.0)
+);
+​
+OrderProcessor<Order> processor = new OrderProcessor<>(orders);
+​
+System.out.println("총 주문 수량: " + processor.totalQuantity()); // 10
+System.out.println("총 매출: $" + processor.totalRevenue()); // 1200*2 + 25*5 + 75*1 + 300*2 = 2400 + 125 + 75 + 600 = 3200
+System.out.println("고객별 매출: " + processor.revenuePerCustomer());
+// {Alice=2550.0, Bob=125.0, Charlie=600.0}
+​
+processor.sortByUnitPriceDesc().forEach(System.out::println);
+```
+​
+다음에서 공유됨
+slack-전체
+22시간 전
+
+
+
